@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>CommandNavigation</RootNamespace>
+    <AssemblyName>CommandNavigation</AssemblyName>
+  </PropertyGroup>
+
+  <Import Project="..\CommandNavigationCommon\CommandNavigationCommon.projitems" Label="Shared" />
+
+</Project>
