@@ -75,20 +75,20 @@
       }
       throw new IndexOutOfRangeException("Empty Stack");
     }
-    public new bool TryPop([MaybeNullWhen(false)] out T Popped) {
-      if (base.TryPop(out Popped)) {
-        Popped.CommandState = CommandState.Popped;
-        Popped.OnPop();
-        this.OnPopped?.Invoke(this, Popped);
-        if (Count > 0) {
-          Peek().CommandState = CommandState.Topped;
-          Peek().OnTop();
-          OnTopped?.Invoke(this, Peek());
-        }
-        return true;
-      }
-      return false;
-    }
+    //public new bool TryPop([MaybeNullWhen(false)] out T Popped) {
+    //  if (base.TryPop(out Popped)) {
+    //    Popped.CommandState = CommandState.Popped;
+    //    Popped.OnPop();
+    //    this.OnPopped?.Invoke(this, Popped);
+    //    if (Count > 0) {
+    //      Peek().CommandState = CommandState.Topped;
+    //      Peek().OnTop();
+    //      OnTopped?.Invoke(this, Peek());
+    //    }
+    //    return true;
+    //  }
+    //  return false;
+    //}
   }
 
   public delegate void OnCommandPushedHandle<T>(CommandNavigation<T> CurrentStack, T PushedItem) where T : class, ICommandCtrlx4;

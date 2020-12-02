@@ -165,18 +165,18 @@
       return null;
     }
 
-    public new bool TryPop([MaybeNullWhen(false)] out CommandChain<TCommand> Popped) {
-      if (base.TryPop(out Popped)) {
-        Popped.OnPop();
-        this.OnPopped?.Invoke(this, Popped);
-        if (Count > 0) {
-          Peek().OnTop();
-          OnTopped?.Invoke(this, Peek());
-        }
-        return true;
-      }
-      return false;
-    }
+    //public new bool TryPop([MaybeNullWhen(false)] out CommandChain<TCommand> Popped) {
+    //  if (base.TryPop(out Popped)) {
+    //    Popped.OnPop();
+    //    this.OnPopped?.Invoke(this, Popped);
+    //    if (Count > 0) {
+    //      Peek().OnTop();
+    //      OnTopped?.Invoke(this, Peek());
+    //    }
+    //    return true;
+    //  }
+    //  return false;
+    //}
 
 
   }

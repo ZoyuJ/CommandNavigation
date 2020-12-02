@@ -55,15 +55,15 @@
       }
       throw new IndexOutOfRangeException("Empty Stack");
     }
-    public new bool TryPop([MaybeNullWhen(false)] out T Popped) {
-      if (base.TryPop(out Popped)) {
-        Popped.CommandState = CommandState.Popped;
-        Popped.OnPop();
-        this.OnPopped?.Invoke(this, Popped);
-        return true;
-      }
-      return false;
-    }
+    //public new bool TryPop(out T Popped) {
+    //  if (base.TryPop(out Popped)) {
+    //    Popped.CommandState = CommandState.Popped;
+    //    Popped.OnPop();
+    //    this.OnPopped?.Invoke(this, Popped);
+    //    return true;
+    //  }
+    //  return false;
+    //}
 
   }
 
