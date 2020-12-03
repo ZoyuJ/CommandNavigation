@@ -61,32 +61,28 @@
         OnPushed?.Invoke(this, Peek(), Item);
       }
       else if (Item.Order > Peek().Order) {
-        var Poppeds = this.Pop();
-        //Poppeds.
+        var Poppeds = base.Pop();
+        foreach (var PoppedItem in Poppeds) {
+          PoppedItem.CommandState = CommandState.Popped;
+          PoppedItem.OnPop();
+          OnPopped?.Invoke(this, Poppeds, PoppedItem);
+        }
         Push(Item);
       }
       else {
+        var Topped = Peek();
+        if (Topped.Count > 0 && Topped.First.Value.CommandState == CommandState.Topped || Topped.First.Value.CommandState == CommandState.Pushed) {
+          foreach (var ToppedItem in Topped) {
+            ToppedItem.CommandState = CommandState.Overed;
+            ToppedItem.OnOver();
+            OnOvered?.Invoke(this, Topped, ToppedItem);
+          }
+        }
         base.Push(new CommandChain<TCommand>(this, Item));
         Item.CommandState = CommandState.Pushed;
         Item.OnPush();
         OnPushed?.Invoke(this, Peek(), Item);
       }
-      //if (Count == 0) {
-      //  base.Push(Item);
-      //  Item.OnPush();
-      //  OnPushed?.Invoke(this, Item);
-      //}
-      //else if (Item.Order <= Peek().Order) {
-      //  this.Pop();
-      //  this.Push(Item);
-      //}
-      //else {
-      //  Peek().OnOver();
-      //  OnOvered?.Invoke(this, Peek());
-      //  base.Push(Item);
-      //  Item.OnPush();
-      //  OnPushed?.Invoke(this, Item);
-      //}
     }
     public new CommandChain<TCommand> Pop() {
       if (Count > 0) {
@@ -98,6 +94,10 @@
         }
         if (Count > 0) {
           var Topped = Peek();
+          while (Topped.Count <= 0) {
+            base.Pop();
+            Topped = Peek();
+          }
           foreach (var Item in Topped) {
             Item.CommandState = CommandState.Topped;
             Item.OnTop();
@@ -124,7 +124,7 @@
                 Overeds = Peek();
               }
               foreach (var OItem in Overeds) {
-                OItem.CommandState = CommandState.Popped;
+                OItem.CommandState = CommandState.Topped;
                 OItem.OnTop();
                 OnTopped(this, Overeds, OItem);
               }
@@ -165,17 +165,18 @@
       return null;
     }
 
-    public new bool TryPop([MaybeNullWhen(false)] out CommandChain<TCommand> Popped) {
-      if (base.TryPop(out Popped)) {
-        Popped.OnPop();
-        this.OnPopped?.Invoke(this, Popped);
-        if (Count > 0) {
-          Peek().OnTop();
-          OnTopped?.Invoke(this, Peek());
-        }
-        return true;
-      }
-      return false;
+   [Obsolete("",true)] public new bool TryPop( out CommandChain<TCommand> Popped) {
+      //if (base.TryPop(out Popped)) {
+      //  Popped.OnPop();
+      //  this.OnPopped?.Invoke(this, Popped);
+      //  if (Count > 0) {
+      //    Peek().OnTop();
+      //    OnTopped?.Invoke(this, Peek());
+      //  }
+      //  return true;
+      //}
+      //return false;
+      throw new NotImplementedException();
     }
 
 
