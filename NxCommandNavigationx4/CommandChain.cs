@@ -56,7 +56,7 @@
     public void Discard() {
       base.Clear();
     }
-
+    //public void ForEach()
   }
 
 

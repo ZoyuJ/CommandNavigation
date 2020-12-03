@@ -49,7 +49,7 @@
       }
       else {
         var Topped = Peek();
-        if (Topped.CommandState == CommandState.Topped) {
+        if (Topped.CommandState == CommandState.Topped|| Topped.CommandState == CommandState.Pushed) {
           Topped.CommandState = CommandState.Overed;
           Topped.OnOver();
           OnOvered?.Invoke(this, Topped);

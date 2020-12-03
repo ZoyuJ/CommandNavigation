@@ -66,6 +66,14 @@
         Push(Item);
       }
       else {
+        var Topped = Peek();
+        if (Topped.Count > 0 && Topped.First.Value.CommandState == CommandState.Topped || Topped.First.Value.CommandState == CommandState.Pushed) {
+          foreach (var ToppedItem in Topped) {
+            ToppedItem.CommandState = CommandState.Overed;
+            ToppedItem.OnOver();
+            OnOvered?.Invoke(this, Topped, ToppedItem);
+          }
+        }
         base.Push(new CommandChain<TCommand>(this, Item));
         Item.CommandState = CommandState.Pushed;
         Item.OnPush();
