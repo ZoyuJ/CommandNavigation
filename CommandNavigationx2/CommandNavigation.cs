@@ -30,7 +30,7 @@
     public new void Push(T Item) {
       if (Count == 0) {
         base.Push(Item);
-        Item.CommandState = CommandState.Pushed;
+        Item.CommandState = CommandState.Topped;
         Item.OnPush();
         OnPushed?.Invoke(this, Item);
       }
@@ -40,7 +40,7 @@
       }
       else {
         base.Push(Item);
-        Item.CommandState = CommandState.Pushed;
+        Item.CommandState = CommandState.Topped;
         Item.OnPush();
         OnPushed?.Invoke(this, Item);
       }

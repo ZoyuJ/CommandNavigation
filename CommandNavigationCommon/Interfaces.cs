@@ -11,7 +11,6 @@
   }
   public enum CommandState {
     Popped = 0,
-    Pushed,
     Overed,
     Topped,
   }

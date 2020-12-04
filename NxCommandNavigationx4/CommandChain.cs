@@ -25,7 +25,7 @@
     [Obsolete("", true)] public new void RemoveLast() => throw new NotImplementedException("Obsolete");
     public void Add(T Value) {
       base.AddLast(Value);
-      Value.CommandState = CommandState.Pushed;
+      Value.CommandState = CommandState.Topped;
       Value.OnPush();
       Navigation.InvokeOnCommandPushedHandle(this, Value);
     }
@@ -45,7 +45,7 @@
       Value = null;
       return false;
     }
-    public void Clear() {
+    public new void Clear() {
       foreach (var item in this) {
         item.CommandState = CommandState.Popped;
         item.OnPop();

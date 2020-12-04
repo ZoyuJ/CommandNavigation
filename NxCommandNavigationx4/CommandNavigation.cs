@@ -1,9 +1,7 @@
 ﻿namespace CommandNavigation.CommandnNavigation4 {
   using System;
   using System.Collections.Generic;
-  using System.Diagnostics.CodeAnalysis;
   using System.Linq;
-  using System.Text;
 
   public partial class CommandNavigation<TCommand/*, TChain*/> : Stack<CommandChain<TCommand>> where TCommand : class, ICommandCtrlx4 /*where TChain : CommandChain<TCommand>*/ {
 
@@ -50,13 +48,13 @@
     public void Push(TCommand Item) {
       if (Count == 0) {
         base.Push(new CommandChain<TCommand>(this, Item));
-        Item.CommandState = CommandState.Pushed;
+        Item.CommandState = CommandState.Topped;
         Item.OnPush();
         OnPushed?.Invoke(this, Peek(), Item);
       }
       else if (Item.Order == Peek().Order) {
         Peek().Add(Item);
-        Item.CommandState = CommandState.Pushed;
+        Item.CommandState = CommandState.Topped;
         Item.OnPush();
         OnPushed?.Invoke(this, Peek(), Item);
       }
@@ -67,7 +65,7 @@
       }
       else {
         var Topped = Peek();
-        if (Topped.Count > 0 && Topped.First.Value.CommandState == CommandState.Topped || Topped.First.Value.CommandState == CommandState.Pushed) {
+        if (Topped.Count > 0 && Topped.First.Value.CommandState == CommandState.Topped) {
           foreach (var ToppedItem in Topped) {
             ToppedItem.CommandState = CommandState.Overed;
             ToppedItem.OnOver();
@@ -75,26 +73,10 @@
           }
         }
         base.Push(new CommandChain<TCommand>(this, Item));
-        Item.CommandState = CommandState.Pushed;
+        Item.CommandState = CommandState.Topped;
         Item.OnPush();
         OnPushed?.Invoke(this, Peek(), Item);
       }
-      //if (Count == 0) {
-      //  base.Push(Item);
-      //  Item.OnPush();
-      //  OnPushed?.Invoke(this, Item);
-      //}
-      //else if (Item.Order <= Peek().Order) {
-      //  this.Pop();
-      //  this.Push(Item);
-      //}
-      //else {
-      //  Peek().OnOver();
-      //  OnOvered?.Invoke(this, Peek());
-      //  base.Push(Item);
-      //  Item.OnPush();
-      //  OnPushed?.Invoke(this, Item);
-      //}
     }
     public new CommandChain<TCommand> Pop() {
       if (Count > 0) {
@@ -118,8 +100,7 @@
     }
     public void Pop(Predicate<TCommand> Match) {
       if (Count > 0) {
-        var Item = /*(IEnumerable<TCommand>)*/Peek().FirstOrDefault(E => Match(E));
-        if (Item != null) {
+        if (Peek().Remove(Match, out var Item)) {
           Item.CommandState = CommandState.Popped;
           Item.OnPop();
           OnPopped?.Invoke(this, Peek(), Item);
