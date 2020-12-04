@@ -34,6 +34,7 @@
         OnPushed?.Invoke(this, Item);
       }
       else if (Item.Order <= Peek().Order) {
+        Pop();
         this.Push(Item);
       }
       else {
