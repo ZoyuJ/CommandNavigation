@@ -101,9 +101,6 @@
     public void Pop(Predicate<TCommand> Match) {
       if (Count > 0) {
         if (Peek().Remove(Match, out var Item)) {
-          Item.CommandState = CommandState.Popped;
-          Item.OnPop();
-          OnPopped?.Invoke(this, Peek(), Item);
           if (Peek().Count == 0) {
             base.Pop();
             if (Count > 0) {
