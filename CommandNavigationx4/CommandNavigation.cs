@@ -36,7 +36,7 @@
     public new void Push(T Item) {
       if (Count == 0) {
         base.Push(Item);
-        Item.CommandState = CommandState.Pushed;
+        Item.CommandState = CommandState.Topped;
         Item.OnPush();
         OnPushed?.Invoke(this, Item);
       }
@@ -49,13 +49,13 @@
       }
       else {
         var Topped = Peek();
-        if (Topped.CommandState == CommandState.Topped||Topped.CommandState == CommandState.Pushed) {
+        if (Topped.CommandState == CommandState.Topped) {
           Topped.CommandState = CommandState.Overed;
           Topped.OnOver();
           OnOvered?.Invoke(this, Topped);
         }
         base.Push(Item);
-        Item.CommandState = CommandState.Pushed;
+        Item.CommandState = CommandState.Topped;
         Item.OnPush();
         OnPushed?.Invoke(this, Item);
       }
@@ -75,7 +75,7 @@
       }
       throw new IndexOutOfRangeException("Empty Stack");
     }
-    public new bool TryPop([MaybeNullWhen(false)] out T Popped) {
+    public new bool TryPop(out T Popped) {
       if (base.TryPop(out Popped)) {
         Popped.CommandState = CommandState.Popped;
         Popped.OnPop();

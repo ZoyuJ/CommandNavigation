@@ -50,13 +50,13 @@
     public void Push(TCommand Item) {
       if (Count == 0) {
         base.Push(new CommandChain<TCommand>(this, Item));
-        Item.CommandState = CommandState.Pushed;
+        Item.CommandState = CommandState.Topped;
         Item.OnPush();
         OnPushed?.Invoke(this, Peek(), Item);
       }
       else if (Item.Order == Peek().Order) {
         Peek().Add(Item);
-        Item.CommandState = CommandState.Pushed;
+        Item.CommandState = CommandState.Topped;
         Item.OnPush();
         OnPushed?.Invoke(this, Peek(), Item);
       }
@@ -71,7 +71,7 @@
       }
       else {
         var Topped = Peek();
-        if (Topped.Count > 0 && Topped.First.Value.CommandState == CommandState.Topped || Topped.First.Value.CommandState == CommandState.Pushed) {
+        if (Topped.Count > 0 && Topped.First.Value.CommandState == CommandState.Topped) {
           foreach (var ToppedItem in Topped) {
             ToppedItem.CommandState = CommandState.Overed;
             ToppedItem.OnOver();
@@ -79,7 +79,7 @@
           }
         }
         base.Push(new CommandChain<TCommand>(this, Item));
-        Item.CommandState = CommandState.Pushed;
+        Item.CommandState = CommandState.Topped;
         Item.OnPush();
         OnPushed?.Invoke(this, Peek(), Item);
       }
