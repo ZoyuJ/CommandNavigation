@@ -94,10 +94,6 @@
         }
         if (Count > 0) {
           var Topped = Peek();
-          while (Topped.Count <= 0) {
-            base.Pop();
-            Topped = Peek();
-          }
           foreach (var Item in Topped) {
             Item.CommandState = CommandState.Topped;
             Item.OnTop();
@@ -110,11 +106,7 @@
     }
     public void Pop(Predicate<TCommand> Match) {
       if (Count > 0) {
-        var Item = /*(IEnumerable<TCommand>)*/Peek().FirstOrDefault(E => Match(E));
-        if (Item != null) {
-          Item.CommandState = CommandState.Popped;
-          Item.OnPop();
-          OnPopped?.Invoke(this, Peek(), Item);
+        if(Peek().Remove(Match, out var Item)) {
           if (Peek().Count == 0) {
             base.Pop();
             if (Count > 0) {
