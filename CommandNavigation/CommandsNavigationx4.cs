@@ -1,7 +1,6 @@
 ﻿namespace CommandNavigation.CommandnNavigation4 {
   using System;
   using System.Collections.Generic;
-  using System.Linq;
 
   public partial class CommandNavigation<TCommand/*, TChain*/> : Stack<CommandChain<TCommand>> where TCommand : class, ICommandCtrlx4 /*where TChain : CommandChain<TCommand>*/ {
 
@@ -53,14 +52,18 @@
         OnPushed?.Invoke(this, Peek(), Item);
       }
       else if (Item.Order == Peek().Order) {
+        Peek().Add(Item);
         Item.CommandState = CommandState.Topped;
         Item.OnPush();
-        Peek().Add(Item);
         OnPushed?.Invoke(this, Peek(), Item);
       }
       else if (Item.Order > Peek().Order) {
-        var Poppeds = this.Pop();
-        //Poppeds.
+        var Poppeds = base.Pop();
+        foreach (var PoppedItem in Poppeds) {
+          PoppedItem.CommandState = CommandState.Popped;
+          PoppedItem.OnPop();
+          OnPopped?.Invoke(this, Poppeds, PoppedItem);
+        }
         Push(Item);
       }
       else {
@@ -100,7 +103,7 @@
     }
     public void Pop(Predicate<TCommand> Match) {
       if (Count > 0) {
-        if (Peek().Remove(Match, out var Item)) {
+        if(Peek().Remove(Match, out var Item)) {
           if (Peek().Count == 0) {
             base.Pop();
             if (Count > 0) {
@@ -110,7 +113,7 @@
                 Overeds = Peek();
               }
               foreach (var OItem in Overeds) {
-                OItem.CommandState = CommandState.Popped;
+                OItem.CommandState = CommandState.Topped;
                 OItem.OnTop();
                 OnTopped(this, Overeds, OItem);
               }
@@ -151,18 +154,7 @@
       return null;
     }
 
-    //public new bool TryPop([MaybeNullWhen(false)] out CommandChain<TCommand> Popped) {
-    //  if (base.TryPop(out Popped)) {
-    //    Popped.OnPop();
-    //    this.OnPopped?.Invoke(this, Popped);
-    //    if (Count > 0) {
-    //      Peek().OnTop();
-    //      OnTopped?.Invoke(this, Peek());
-    //    }
-    //    return true;
-    //  }
-    //  return false;
-    //}
+ 
 
 
   }

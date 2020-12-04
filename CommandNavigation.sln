@@ -5,36 +5,22 @@ VisualStudioVersion = 16.0.30711.63
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CommandNavigationCommon", "CommandNavigationCommon\CommandNavigationCommon.shproj", "{F4C9334D-B53C-4362-BB8D-C5C6A1997897}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandNavigationx2", "CommandNavigationx2\CommandNavigationx2.csproj", "{3BBCC2F3-2AA3-4328-B54D-498437A8661D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandNavigationx4", "CommandNavigationx4\CommandNavigationx4.csproj", "{FC7EAF0A-5C08-42DD-9031-311304DA7593}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NxCommandNavigationx4", "NxCommandNavigationx4\NxCommandNavigationx4.csproj", "{918C890C-71DA-490D-B91F-75DD7884CA33}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandNavigation", "CommandNavigation\CommandNavigation.csproj", "{3250F0FA-F082-4CC3-B01D-45D70D71F24C}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		CommandNavigationCommon\CommandNavigationCommon.projitems*{3bbcc2f3-2aa3-4328-b54d-498437a8661d}*SharedItemsImports = 4
-		CommandNavigationCommon\CommandNavigationCommon.projitems*{918c890c-71da-490d-b91f-75dd7884ca33}*SharedItemsImports = 4
+		CommandNavigationCommon\CommandNavigationCommon.projitems*{3250f0fa-f082-4cc3-b01d-45d70d71f24c}*SharedItemsImports = 4
 		CommandNavigationCommon\CommandNavigationCommon.projitems*{f4c9334d-b53c-4362-bb8d-c5c6a1997897}*SharedItemsImports = 13
-		CommandNavigationCommon\CommandNavigationCommon.projitems*{fc7eaf0a-5c08-42dd-9031-311304da7593}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3BBCC2F3-2AA3-4328-B54D-498437A8661D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3BBCC2F3-2AA3-4328-B54D-498437A8661D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3BBCC2F3-2AA3-4328-B54D-498437A8661D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3BBCC2F3-2AA3-4328-B54D-498437A8661D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FC7EAF0A-5C08-42DD-9031-311304DA7593}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FC7EAF0A-5C08-42DD-9031-311304DA7593}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FC7EAF0A-5C08-42DD-9031-311304DA7593}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FC7EAF0A-5C08-42DD-9031-311304DA7593}.Release|Any CPU.Build.0 = Release|Any CPU
-		{918C890C-71DA-490D-B91F-75DD7884CA33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{918C890C-71DA-490D-B91F-75DD7884CA33}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{918C890C-71DA-490D-B91F-75DD7884CA33}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{918C890C-71DA-490D-B91F-75DD7884CA33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3250F0FA-F082-4CC3-B01D-45D70D71F24C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3250F0FA-F082-4CC3-B01D-45D70D71F24C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3250F0FA-F082-4CC3-B01D-45D70D71F24C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3250F0FA-F082-4CC3-B01D-45D70D71F24C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -4,12 +4,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3BBCC2F3-2AA3-4328-B54D-498437A8661D}</ProjectGuid>
+    <ProjectGuid>{3250F0FA-F082-4CC3-B01D-45D70D71F24C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CommandNavigation</RootNamespace>
     <AssemblyName>CommandNavigation</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
@@ -41,7 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandNavigation.cs" />
+    <Compile Include="CommandChain.cs" />
+    <Compile Include="CommandNavigationx2.cs" />
+    <Compile Include="CommandNavigationx4.cs" />
+    <Compile Include="CommandsNavigationx4.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="..\CommandNavigationCommon\CommandNavigationCommon.projitems" Label="Shared" />

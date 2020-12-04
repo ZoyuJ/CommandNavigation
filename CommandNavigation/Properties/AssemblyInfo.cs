@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("NxCommandNavigationx4")]
+[assembly: AssemblyTitle("CommandNavigation")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("NxCommandNavigationx4")]
+[assembly: AssemblyProduct("CommandNavigation")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("918c890c-71da-490d-b91f-75dd7884ca33")]
+[assembly: Guid("3250f0fa-f082-4cc3-b01d-45d70d71f24c")]
 
 // Version information for an assembly consists of the following four values:
 //

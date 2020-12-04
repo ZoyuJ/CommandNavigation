@@ -1,7 +1,6 @@
 ﻿namespace CommandNavigation.CommandnNavigation4 {
   using System;
   using System.Collections.Generic;
-  using System.Text;
 
   public class CommandChain<T> : LinkedList<T> where T : class, ICommandCtrlx4 {
     public int Order { get => First.Value.Order; }
@@ -24,9 +23,9 @@
     [Obsolete("", true)] public new void RemoveFirst() => throw new NotImplementedException("Obsolete");
     [Obsolete("", true)] public new void RemoveLast() => throw new NotImplementedException("Obsolete");
     public void Add(T Value) {
-      base.AddLast(Value);
       Value.CommandState = CommandState.Topped;
       Value.OnPush();
+      base.AddLast(Value);
       Navigation.InvokeOnCommandPushedHandle(this, Value);
     }
     public bool Remove(Predicate<T> Match, out T Value) {
@@ -56,7 +55,7 @@
     public void Discard() {
       base.Clear();
     }
-    //public void ForEach()
+
   }
 
 
