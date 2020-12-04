@@ -35,9 +35,9 @@
     }
     public new void Push(T Item) {
       if (Count == 0) {
-        base.Push(Item);
         Item.CommandState = CommandState.Topped;
         Item.OnPush();
+        base.Push(Item);
         OnPushed?.Invoke(this, Item);
       }
       else if (Item.Order <= Peek().Order) {
@@ -54,9 +54,9 @@
           Topped.OnOver();
           OnOvered?.Invoke(this, Topped);
         }
-        base.Push(Item);
         Item.CommandState = CommandState.Topped;
         Item.OnPush();
+        base.Push(Item);
         OnPushed?.Invoke(this, Item);
       }
     }

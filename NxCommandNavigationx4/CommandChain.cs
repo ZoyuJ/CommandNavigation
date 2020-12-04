@@ -24,9 +24,9 @@
     [Obsolete("", true)] public new void RemoveFirst() => throw new NotImplementedException("Obsolete");
     [Obsolete("", true)] public new void RemoveLast() => throw new NotImplementedException("Obsolete");
     public void Add(T Value) {
-      base.AddLast(Value);
       Value.CommandState = CommandState.Topped;
       Value.OnPush();
+      base.AddLast(Value);
       Navigation.InvokeOnCommandPushedHandle(this, Value);
     }
     public bool Remove(Predicate<T> Match, out T Value) {
