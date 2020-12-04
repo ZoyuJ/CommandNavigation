@@ -47,15 +47,15 @@
     [Obsolete("Not Support")] public new void Push(CommandChain<TCommand> Item) => throw new NotImplementedException("Obsolete");
     public void Push(TCommand Item) {
       if (Count == 0) {
-        base.Push(new CommandChain<TCommand>(this, Item));
         Item.CommandState = CommandState.Topped;
         Item.OnPush();
+        base.Push(new CommandChain<TCommand>(this, Item));
         OnPushed?.Invoke(this, Peek(), Item);
       }
       else if (Item.Order == Peek().Order) {
-        Peek().Add(Item);
         Item.CommandState = CommandState.Topped;
         Item.OnPush();
+        Peek().Add(Item);
         OnPushed?.Invoke(this, Peek(), Item);
       }
       else if (Item.Order > Peek().Order) {
@@ -72,9 +72,9 @@
             OnOvered?.Invoke(this, Topped, ToppedItem);
           }
         }
-        base.Push(new CommandChain<TCommand>(this, Item));
         Item.CommandState = CommandState.Topped;
         Item.OnPush();
+        base.Push(new CommandChain<TCommand>(this, Item));
         OnPushed?.Invoke(this, Peek(), Item);
       }
     }

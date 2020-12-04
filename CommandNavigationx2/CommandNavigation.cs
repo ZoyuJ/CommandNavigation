@@ -29,19 +29,16 @@
     }
     public new void Push(T Item) {
       if (Count == 0) {
-        base.Push(Item);
-        Item.CommandState = CommandState.Topped;
         Item.OnPush();
+        base.Push(Item);
         OnPushed?.Invoke(this, Item);
       }
       else if (Item.Order <= Peek().Order) {
-        this.Pop().CommandState = CommandState.Popped;
         this.Push(Item);
       }
       else {
-        base.Push(Item);
-        Item.CommandState = CommandState.Topped;
         Item.OnPush();
+        base.Push(Item);
         OnPushed?.Invoke(this, Item);
       }
     }
@@ -49,7 +46,6 @@
       if (Count > 0) {
         Peek().OnPop();
         var Popped = base.Pop();
-        Popped.CommandState = CommandState.Popped;
         OnPopped?.Invoke(this, Popped);
         return Popped;
       }
