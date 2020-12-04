@@ -1,7 +1,6 @@
 ﻿namespace CommandNavigation.CommandnNavigation4 {
   using System;
   using System.Collections.Generic;
-  using System.Text;
 
   public class CommandChain<T> : LinkedList<T> where T : class, ICommandCtrlx4 {
     public int Order { get => First.Value.Order; }

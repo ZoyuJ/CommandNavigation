@@ -1,8 +1,6 @@
 ﻿namespace CommandNavigation.Command1Navigation2 {
   using System;
   using System.Collections.Generic;
-  using System.Diagnostics.CodeAnalysis;
-  using System.Text;
   /// <summary>
   /// Push:  -> Item -> Push in stack -> invoke OnPush -> invoke OnPushed event
   /// Pop:   -> invoke OnPop -> Pop form Stack -> invoke OnPopped event -> Item
@@ -52,14 +50,7 @@
       }
       throw new IndexOutOfRangeException("Empty Stack");
     }
-    public new bool TryPop(out T Popped) {
-      if (base.TryPop(out Popped)) {
-        Popped.OnPop();
-        this.OnPopped?.Invoke(this, Popped);
-        return true;
-      }
-      return false;
-    }
+
 
   }
 

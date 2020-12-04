@@ -1,9 +1,6 @@
 ﻿namespace CommandNavigation.CommandnNavigation4 {
   using System;
   using System.Collections.Generic;
-  using System.Diagnostics.CodeAnalysis;
-  using System.Linq;
-  using System.Text;
 
   public partial class CommandNavigation<TCommand/*, TChain*/> : Stack<CommandChain<TCommand>> where TCommand : class, ICommandCtrlx4 /*where TChain : CommandChain<TCommand>*/ {
 
@@ -157,19 +154,7 @@
       return null;
     }
 
-   [Obsolete("",true)] public new bool TryPop( out CommandChain<TCommand> Popped) {
-      //if (base.TryPop(out Popped)) {
-      //  Popped.OnPop();
-      //  this.OnPopped?.Invoke(this, Popped);
-      //  if (Count > 0) {
-      //    Peek().OnTop();
-      //    OnTopped?.Invoke(this, Peek());
-      //  }
-      //  return true;
-      //}
-      //return false;
-      throw new NotImplementedException();
-    }
+ 
 
 
   }
