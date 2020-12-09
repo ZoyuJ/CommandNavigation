@@ -14,7 +14,7 @@
     public abstract override void OnApplyTemplate();
     protected abstract void OnTimer(object sender, EventArgs e);
     public CommandNavigationWindowBase() : base() {
-      _Navigation = new CommandNavigation<IUICommandCtrlx4>(5);
+      _Navigation = new CommandNavigation<ICommandCtrlx4>(5);
       _Timer = new DispatcherTimer(TimeSpan.FromSeconds(1), DispatcherPriority.Normal, OnTimer, Dispatcher);
     }
 
@@ -77,7 +77,7 @@
     public abstract override void OnApplyTemplate();
     protected abstract void OnTimer(object sender, EventArgs e);
     public CommandNavigationUserControl() : base() {
-      _Navigation = new CommandNavigation<IUICommandCtrlx4>(5);
+      _Navigation = new CommandNavigation<ICommandCtrlx4>(5);
       _Timer = new DispatcherTimer(TimeSpan.FromSeconds(1), DispatcherPriority.Normal, OnTimer, Dispatcher);
     }
 
