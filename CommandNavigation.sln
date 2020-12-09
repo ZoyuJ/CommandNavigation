@@ -5,13 +5,13 @@ VisualStudioVersion = 16.0.30711.63
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CommandNavigationCommon", "CommandNavigationCommon\CommandNavigationCommon.shproj", "{F4C9334D-B53C-4362-BB8D-C5C6A1997897}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandNavigation", "CommandNavigation\CommandNavigation.csproj", "{3250F0FA-F082-4CC3-B01D-45D70D71F24C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommandNavigation", "CommandNavigation\CommandNavigation.csproj", "{3250F0FA-F082-4CC3-B01D-45D70D71F24C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Try", "Try\Try.csproj", "{5CAA3A82-55B6-443A-9548-C5BA003621CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Try", "Try\Try.csproj", "{5CAA3A82-55B6-443A-9548-C5BA003621CD}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		CommandNavigationCommon\CommandNavigationCommon.projitems*{3250f0fa-f082-4cc3-b01d-45d70d71f24c}*SharedItemsImports = 4
+		CommandNavigationCommon\CommandNavigationCommon.projitems*{3250f0fa-f082-4cc3-b01d-45d70d71f24c}*SharedItemsImports = 5
 		CommandNavigationCommon\CommandNavigationCommon.projitems*{f4c9334d-b53c-4362-bb8d-c5c6a1997897}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
