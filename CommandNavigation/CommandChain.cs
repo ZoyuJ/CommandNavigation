@@ -87,10 +87,12 @@
     public CommandChain<T> OnPop() {
       if (CommandState != CommandState.Popped) {
         CommandState = CommandState.Popped;
-        foreach (var item in this) {
-          item.CommandState = CommandState.Popped;
-          item.OnPop();
-          Navigation.InvokeOnCommandPoppedHandle(this, item);
+        if (Count > 0) {
+          foreach (var item in this) {
+            item.CommandState = CommandState.Popped;
+            item.OnPop();
+            Navigation.InvokeOnCommandPoppedHandle(this, item);
+          }
         }
         this.Navigation = null;
       }
@@ -113,7 +115,7 @@
       if (CommandState != CommandState.Topped) {
         if (Navigation != null) this.Navigation = Navigation;
         CommandState = CommandState.Topped;
-        if (Count > 0 && CommandState == CommandState.Popped) {
+        if (Count > 0) {
           foreach (var item in this) {
             item.CommandState = CommandState.Topped;
             item.OnTop();
