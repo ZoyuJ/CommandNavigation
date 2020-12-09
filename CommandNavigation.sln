@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommandNavigation", "Comman
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Try", "Try\Try.csproj", "{5CAA3A82-55B6-443A-9548-C5BA003621CD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandNavigation.WPF", "CommandNavigation.WPF\CommandNavigation.WPF.csproj", "{9DED810A-38A4-4216-B73F-47B82FCC2905}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		CommandNavigationCommon\CommandNavigationCommon.projitems*{3250f0fa-f082-4cc3-b01d-45d70d71f24c}*SharedItemsImports = 5
@@ -27,6 +29,10 @@ Global
 		{5CAA3A82-55B6-443A-9548-C5BA003621CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5CAA3A82-55B6-443A-9548-C5BA003621CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5CAA3A82-55B6-443A-9548-C5BA003621CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DED810A-38A4-4216-B73F-47B82FCC2905}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DED810A-38A4-4216-B73F-47B82FCC2905}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DED810A-38A4-4216-B73F-47B82FCC2905}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DED810A-38A4-4216-B73F-47B82FCC2905}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
