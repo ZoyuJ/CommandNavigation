@@ -2,7 +2,7 @@
   using System;
   using System.Collections.Generic;
 
-  public partial class CommandNavigation<TCommand/*, TChain*/> : Stack<CommandChain<TCommand>> where TCommand : class, ICommandCtrlx4 /*where TChain : CommandChain<TCommand>*/ {
+  public partial class CommandNavigation<TCommand> : Stack<CommandChain<TCommand>> where TCommand : class, ICommandCtrlx4 {
 
     public event OnCommandPushedHandle<TCommand> OnPushed;
     internal void InvokeOnCommandPushedHandle(CommandChain<TCommand> Chain, TCommand Item) => OnPushed?.Invoke(this, Chain, Item);
@@ -43,106 +43,112 @@
     public void Discard() {
       base.Clear();
     }
-    [Obsolete("Not Support")] public new void Push(CommandChain<TCommand> Item) => throw new NotImplementedException("Obsolete");
+
+    /// <summary>
+    /// 压栈
+    /// </summary>
+    /// <param name="Chain"></param>
+    public void Push(IEnumerable<TCommand> Items) {
+      Push(new CommandChain<TCommand>(this, Items));
+    }
+    /// <summary>
+    /// 压栈
+    /// </summary>
+    /// <param name="Chain"></param>
+    public new void Push(CommandChain<TCommand> Chain) {
+      if (Count == 0) {
+        base.Push(Chain);
+        Chain.OnPush(this);
+      }
+      else if (Chain.Order <= Peek().Order) {
+        base.Pop().Clear();
+        Push(Chain);
+      }
+      else {
+        Peek().OnOver();
+        base.Push(Chain);
+        Chain.OnPush(this);
+      }
+    }
+
+    /// <summary>
+    /// 压栈
+    /// </summary>
+    /// <param name="Item"></param>
     public void Push(TCommand Item) {
       if (Count == 0) {
-        Item.CommandState = CommandState.Topped;
-        Item.OnPush();
-        base.Push(new CommandChain<TCommand>(this, Item));
-        OnPushed?.Invoke(this, Peek(), Item);
+        var Chain = new CommandChain<TCommand>(this, Item.Order);
+        base.Push(Chain);
+        Chain.OnPush();
+        Chain.Add(Item);
       }
       else if (Item.Order == Peek().Order) {
         Peek().Add(Item);
-        Item.CommandState = CommandState.Topped;
-        Item.OnPush();
-        OnPushed?.Invoke(this, Peek(), Item);
       }
-      else if (Item.Order > Peek().Order) {
-        var Poppeds = base.Pop();
-        foreach (var PoppedItem in Poppeds) {
-          PoppedItem.CommandState = CommandState.Popped;
-          PoppedItem.OnPop();
-          OnPopped?.Invoke(this, Poppeds, PoppedItem);
-        }
+      else if (Item.Order < Peek().Order) {
+        base.Pop().Clear();
         Push(Item);
       }
       else {
-        var Topped = Peek();
-        if (Topped.Count > 0 && Topped.First.Value.CommandState == CommandState.Topped) {
-          foreach (var ToppedItem in Topped) {
-            ToppedItem.CommandState = CommandState.Overed;
-            ToppedItem.OnOver();
-            OnOvered?.Invoke(this, Topped, ToppedItem);
-          }
-        }
-        Item.CommandState = CommandState.Topped;
-        Item.OnPush();
-        base.Push(new CommandChain<TCommand>(this, Item));
-        OnPushed?.Invoke(this, Peek(), Item);
+        Peek().OnOver();
+        var Chain = new CommandChain<TCommand>(this, Item.Order);
+        base.Push(Chain);
+        Chain.OnPush();
+        Chain.Add(Item);
       }
     }
+
+    /// <summary>
+    /// 出栈
+    /// </summary>
+    /// <returns></returns>
     public new CommandChain<TCommand> Pop() {
       if (Count > 0) {
-        var Poppeds = Peek();
-        foreach (var Item in Poppeds) {
-          Item.CommandState = CommandState.Popped;
-          Item.OnTop();
-          OnTopped(this, Poppeds, Item);
-        }
+        var Poppeds = base.Pop().OnPop();
         if (Count > 0) {
-          var Topped = Peek();
-          foreach (var Item in Topped) {
-            Item.CommandState = CommandState.Topped;
-            Item.OnTop();
-            OnTopped(this, Topped, Item);
-          }
+          Peek().OnTop();
         }
         return Poppeds;
       }
       throw new IndexOutOfRangeException("Empty Stack");
     }
-    public void Pop(Predicate<TCommand> Match) {
+    /// <summary>
+    /// 出栈栈顶一个节点
+    /// </summary>
+    /// <param name="Match"></param>
+    public TCommand Pop(Predicate<TCommand> Match) {
       if (Count > 0) {
-        if(Peek().Remove(Match, out var Item)) {
+        if (Peek().Remove(Match, out var Item)) {
           if (Peek().Count == 0) {
             base.Pop();
             if (Count > 0) {
-              var Overeds = Peek();
-              while (Overeds.Count <= 0) {
-                base.Pop();
-                Overeds = Peek();
-              }
-              foreach (var OItem in Overeds) {
-                OItem.CommandState = CommandState.Topped;
-                OItem.OnTop();
-                OnTopped(this, Overeds, OItem);
-              }
+              Peek().OnTop();
             }
           }
+          return Item;
         }
+        return null;
       }
       throw new IndexOutOfRangeException("Empty Stack");
     }
+
     /// <summary>
     /// 
     /// if matched, gonna invoke onpush then onover immdiately
     /// </summary>
     /// <param name="Match"></param>
-    public void Insert(Predicate<CommandChain<TCommand>> Match, TCommand Item) {
+    public bool PushInside(Predicate<CommandChain<TCommand>> Match, TCommand Item) {
       foreach (var Level in this) {
         if (Level.Count > 0 && Match(Level)) {
           Item.Order = Level.Order;
           Level.Add(Item);
-          if (Level != Peek()) {
-            Item.CommandState = CommandState.Overed;
-            Item.OnOver();
-            OnOvered?.Invoke(this, Level, Item);
-          }
+          return true;
         }
       }
+      return false;
     }
     /// <summary>
-    /// 
+    /// 出栈栈内节点
     /// </summary>
     /// <param name="Match"></param>
     public TCommand PopInside(Predicate<TCommand> Match) {
@@ -154,7 +160,6 @@
       return null;
     }
 
- 
 
 
   }
