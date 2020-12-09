@@ -14,7 +14,7 @@
     public CommandNavigation() : base() { }
     public CommandNavigation(int Capacity) : base(Capacity) { }
 
-    public int CurrentOrder { get => Count == 0 ? 0 : Peek().Order; }
+    public int CurrentOrder { get => Count == 0 ? int.MinValue : Peek().Order; }
     public int NextOrder { get => Count == 0 ? 0 : Peek().Order + 10; }
 
     public new void Clear() {

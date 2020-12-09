@@ -4,7 +4,7 @@
   using System.Linq;
 
   public class CommandChain<T> : LinkedList<T> where T : class, ICommandCtrlx4 {
-    public int Order { get; protected set; } = 0;
+    public int Order { get; internal set; } = 0;
     public CommandState CommandState { get; protected set; } = CommandState.Popped;
     public CommandNavigation<T> Navigation { get; protected set; }
     protected CommandChain() : base() { }
@@ -37,7 +37,6 @@
     #endregion
 
     public void Add(T Value) {
-      Value.OnPush();
       switch (CommandState) {
         case CommandState.Popped:
           Value.CommandState = CommandState.Popped;
@@ -87,20 +86,20 @@
 
     public CommandChain<T> OnPop() {
       if (CommandState != CommandState.Popped) {
-        this.Navigation = null;
         CommandState = CommandState.Popped;
         foreach (var item in this) {
           item.CommandState = CommandState.Popped;
           item.OnPop();
           Navigation.InvokeOnCommandPoppedHandle(this, item);
         }
+        this.Navigation = null;
       }
       return this;
     }
     public CommandChain<T> OnTop() {
       if (CommandState != CommandState.Topped) {
         CommandState = CommandState.Topped;
-        if (Count > 0 && CommandState == CommandState.Overed) {
+        if (Count > 0) {
           foreach (var item in this) {
             item.CommandState = CommandState.Topped;
             item.OnTop();
@@ -137,6 +136,7 @@
       }
       return this;
     }
+
     public void Discard() {
       this.Navigation = null;
       CommandState = CommandState.Popped;

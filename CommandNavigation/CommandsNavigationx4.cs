@@ -3,13 +3,24 @@
   using System.Collections.Generic;
 
   public partial class CommandNavigation<TCommand> : Stack<CommandChain<TCommand>> where TCommand : class, ICommandCtrlx4 {
-
+    /// <summary>
+    /// 有节点被压栈
+    /// </summary>
     public event OnCommandPushedHandle<TCommand> OnPushed;
     internal void InvokeOnCommandPushedHandle(CommandChain<TCommand> Chain, TCommand Item) => OnPushed?.Invoke(this, Chain, Item);
+    /// <summary>
+    /// 有节点被出栈
+    /// </summary>
     public event OnCommandPoppedHandle<TCommand> OnPopped;
     internal void InvokeOnCommandPoppedHandle(CommandChain<TCommand> Chain, TCommand Item) => OnPopped?.Invoke(this, Chain, Item);
+    /// <summary>
+    /// 有节点回到栈顶
+    /// </summary>
     public event OnCommandToppedHandle<TCommand> OnTopped;
     internal void InvokeOnCommandToppedHandle(CommandChain<TCommand> Chain, TCommand Item) => OnTopped?.Invoke(this, Chain, Item);
+    /// <summary>
+    /// 有节点压到栈底
+    /// </summary>
     public event OnCommandOveredHandle<TCommand> OnOvered;
     internal void InvokeOnCommandOveredHandle(CommandChain<TCommand> Chain, TCommand Item) => OnOvered?.Invoke(this, Chain, Item);
 
@@ -31,15 +42,27 @@
     public CommandNavigation() : base() { }
     public CommandNavigation(int Capacity) : base(Capacity) { }
 
+    /// <summary>
+    /// 当前Order
+    /// </summary>
     public int CurrentOrder { get => Count == 0 ? int.MinValue : Peek().Order; }
+    /// <summary>
+    /// 下一级Order
+    /// </summary>
     public int NextOrder { get => Count == 0 || Peek().Count <= 0 ? 0 : Peek().Order + 10; }
 
+    /// <summary>
+    /// 清空
+    /// </summary>
     public new void Clear() {
       while (Count > 0) {
         var Chain = this.Pop();
         Chain.Clear();
       }
     }
+    /// <summary>
+    /// 放弃
+    /// </summary>
     public void Discard() {
       base.Clear();
     }
@@ -72,7 +95,7 @@
     }
 
     /// <summary>
-    /// 压栈
+    /// 压栈节点
     /// </summary>
     /// <param name="Item"></param>
     public void Push(TCommand Item) {
@@ -163,8 +186,9 @@
 
 
   }
-  public delegate void OnCommandPushedHandle<T>(Stack<CommandChain<T>> CurrentNavigation, CommandChain<T> CurrentChain, T PushedItem) where T : class, ICommandCtrlx4;
-  public delegate void OnCommandPoppedHandle<T>(Stack<CommandChain<T>> CurrentNavigation, CommandChain<T> CurrentChain, T PoppedItem) where T : class, ICommandCtrlx4;
-  public delegate void OnCommandToppedHandle<T>(Stack<CommandChain<T>> CurrentNavigation, CommandChain<T> CurrentChain, T ToppedItem) where T : class, ICommandCtrlx4;
-  public delegate void OnCommandOveredHandle<T>(Stack<CommandChain<T>> CurrentNavigation, CommandChain<T> CurrentChain, T OveredItem) where T : class, ICommandCtrlx4;
+  public delegate void OnCommandPushedHandle<TCommand>(Stack<CommandChain<TCommand>> CurrentNavigation, CommandChain<TCommand> CurrentChain, TCommand PushedItem) where TCommand : class, ICommandCtrlx4;
+  public delegate void OnCommandPoppedHandle<TCommand>(Stack<CommandChain<TCommand>> CurrentNavigation, CommandChain<TCommand> CurrentChain, TCommand PoppedItem) where TCommand : class, ICommandCtrlx4;
+  public delegate void OnCommandToppedHandle<TCommand>(Stack<CommandChain<TCommand>> CurrentNavigation, CommandChain<TCommand> CurrentChain, TCommand ToppedItem) where TCommand : class, ICommandCtrlx4;
+  public delegate void OnCommandOveredHandle<TCommand>(Stack<CommandChain<TCommand>> CurrentNavigation, CommandChain<TCommand> CurrentChain, TCommand OveredItem) where TCommand : class, ICommandCtrlx4;
+
 }
