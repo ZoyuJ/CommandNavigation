@@ -10,7 +10,7 @@
 
   using CommandNavigation.CommandnNavigation4;
 
-  public abstract class CommandNavigationWindowBase : Window, IUICommandCtrlx4 {
+  public abstract class CommandNavigationWindowBase : Window, ICommandCtrlx4 {
     public abstract override void OnApplyTemplate();
     protected abstract void OnTimer(object sender, EventArgs e);
     public CommandNavigationWindowBase() : base() {
@@ -18,10 +18,10 @@
       _Timer = new DispatcherTimer(TimeSpan.FromSeconds(1), DispatcherPriority.Normal, OnTimer, Dispatcher);
     }
 
-    protected readonly CommandNavigation<IUICommandCtrlx4> _Navigation;
+    protected readonly CommandNavigation<ICommandCtrlx4> _Navigation;
     protected readonly DispatcherTimer _Timer;
 
-    public CommandNavigation<IUICommandCtrlx4> Navigation { get => _Navigation; }
+    public CommandNavigation<ICommandCtrlx4> Navigation { get => _Navigation; }
 
     public event CommandPushedHandler OnCommandPushed;
     public event CommandPoppedHandler OnCommandPopped;
@@ -73,7 +73,7 @@
     }
 
   }
-  public abstract class CommandNavigationUserControl : UserControl, IUICommandCtrlx4 {
+  public abstract class CommandNavigationUserControl : UserControl, ICommandCtrlx4 {
     public abstract override void OnApplyTemplate();
     protected abstract void OnTimer(object sender, EventArgs e);
     public CommandNavigationUserControl() : base() {
@@ -81,10 +81,10 @@
       _Timer = new DispatcherTimer(TimeSpan.FromSeconds(1), DispatcherPriority.Normal, OnTimer, Dispatcher);
     }
 
-    protected readonly CommandNavigation<IUICommandCtrlx4> _Navigation;
+    protected readonly CommandNavigation<ICommandCtrlx4> _Navigation;
     protected readonly DispatcherTimer _Timer;
 
-    public CommandNavigation<IUICommandCtrlx4> Navigation { get => _Navigation; }
+    public CommandNavigation<ICommandCtrlx4> Navigation { get => _Navigation; }
 
     public event CommandPushedHandler OnCommandPushed;
     public event CommandPoppedHandler OnCommandPopped;
@@ -140,17 +140,17 @@
     }
   }
 
-  public interface IUICommandCtrlx4 : ICommandCtrlx4 {
-    event CommandPushedHandler OnCommandPushed;
-    event CommandPoppedHandler OnCommandPopped;
-    event CommandToppedHandler OnCommandTopped;
-    event CommandOveredHandler OnCommandOvered;
-  }
+  //public interface IUICommandCtrlx4 : ICommandCtrlx4 {
+  //  event CommandPushedHandler OnCommandPushed;
+  //  event CommandPoppedHandler OnCommandPopped;
+  //  event CommandToppedHandler OnCommandTopped;
+  //  event CommandOveredHandler OnCommandOvered;
+  //}
 
-  public delegate void CommandPushedHandler(IUICommandCtrlx4 sender, CommandPushedEventArgs args);
-  public delegate void CommandPoppedHandler(IUICommandCtrlx4 sender, CommandPoppedEventArgs args);
-  public delegate void CommandToppedHandler(IUICommandCtrlx4 sender, CommandToppedEventArgs args);
-  public delegate void CommandOveredHandler(IUICommandCtrlx4 sender, CommandOveredEventArgs args);
+  public delegate void CommandPushedHandler(ICommandCtrlx4 sender, CommandPushedEventArgs args);
+  public delegate void CommandPoppedHandler(ICommandCtrlx4 sender, CommandPoppedEventArgs args);
+  public delegate void CommandToppedHandler(ICommandCtrlx4 sender, CommandToppedEventArgs args);
+  public delegate void CommandOveredHandler(ICommandCtrlx4 sender, CommandOveredEventArgs args);
 
   public class CommandPushedEventArgs : EventArgs { }
   public class CommandPoppedEventArgs : EventArgs { }
