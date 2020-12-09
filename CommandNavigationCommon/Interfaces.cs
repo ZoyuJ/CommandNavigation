@@ -9,6 +9,16 @@
     void OnOver();
     void OnTop();
   }
+
+  public interface ICommandAuto {
+    void OnPush();
+    void OnPop();
+  }
+  public interface ICommandx4Auto : ICommandAuto {
+    void OnOver();
+    void OnTop();
+  }
+
   public enum CommandState {
     Popped = 0,
     Overed,
