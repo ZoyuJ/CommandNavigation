@@ -1,0 +1,20 @@
+{
+  "name": "command-navigation",
+  "version": "0.0.0",
+  "license": "MIT",
+  "description": "CommandNavigation.TS",
+  "main": "app.js",
+  "types": "app.d.ts",
+  "author": {
+    "name": "ZoyuJ"
+  },
+  "scripts": {
+    "build": "tsc --build",
+    "clean": "tsc --build --clean"
+  },
+  "devDependencies": {
+    "@types/node": "^8.0.14",
+    "typescript": "^3.9.7"
+  },
+  "dependencies": {}
+}
