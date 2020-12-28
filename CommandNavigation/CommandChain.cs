@@ -89,8 +89,8 @@
         CommandState = CommandState.Popped;
         if (Count > 0) {
           foreach (var item in this) {
-            item.CommandState = CommandState.Popped;
             item.OnPop();
+            item.CommandState = CommandState.Popped;
             Navigation.InvokeOnCommandPoppedHandle(this, item);
           }
         }
@@ -103,8 +103,8 @@
         CommandState = CommandState.Topped;
         if (Count > 0) {
           foreach (var item in this) {
-            item.CommandState = CommandState.Topped;
             item.OnTop();
+            item.CommandState = CommandState.Topped;
             Navigation.InvokeOnCommandToppedHandle(this, item);
           }
         }
@@ -117,8 +117,8 @@
         CommandState = CommandState.Topped;
         if (Count > 0) {
           foreach (var item in this) {
-            item.CommandState = CommandState.Topped;
             item.OnTop();
+            item.CommandState = CommandState.Topped;
             Navigation.InvokeOnCommandToppedHandle(this, item);
           }
         }
@@ -130,8 +130,8 @@
         CommandState = CommandState.Overed;
         if (Count > 0) {
           foreach (var item in this) {
-            item.CommandState = CommandState.Overed;
             item.OnOver();
+            item.CommandState = CommandState.Overed;
             Navigation.InvokeOnCommandOveredHandle(this, item);
           }
         }

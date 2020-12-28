@@ -101,9 +101,9 @@
     public void Push(TCommand Item) {
       if (Count == 0) {
         var Chain = new CommandChain<TCommand>(this, Item.Order);
-        base.Push(Chain);
         Chain.OnPush();
         Chain.Add(Item);
+        base.Push(Chain);
       }
       else if (Item.Order == Peek().Order) {
         Peek().Add(Item);

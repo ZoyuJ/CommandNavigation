@@ -27,8 +27,8 @@
     }
     public new void Push(T Item) {
       if (Count == 0) {
-        Item.OnPush();
         base.Push(Item);
+        Item.OnPush();
         OnPushed?.Invoke(this, Item);
       }
       else if (Item.Order <= Peek().Order) {
@@ -36,15 +36,15 @@
         this.Push(Item);
       }
       else {
-        Item.OnPush();
         base.Push(Item);
+        Item.OnPush();
         OnPushed?.Invoke(this, Item);
       }
     }
     public new T Pop() {
       if (Count > 0) {
-        Peek().OnPop();
         var Popped = base.Pop();
+        Popped.OnPop();
         OnPopped?.Invoke(this, Popped);
         return Popped;
       }

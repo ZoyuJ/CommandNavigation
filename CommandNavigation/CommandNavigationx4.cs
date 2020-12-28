@@ -35,40 +35,40 @@
     }
     public new void Push(T Item) {
       if (Count == 0) {
-        Item.CommandState = CommandState.Topped;
-        Item.OnPush();
         base.Push(Item);
+        Item.OnPush();
+        Item.CommandState = CommandState.Topped;
         OnPushed?.Invoke(this, Item);
       }
       else if (Item.Order <= Peek().Order) {
         var Popped = base.Pop();
-        Item.CommandState = CommandState.Popped;
         Popped.OnPop();
+        Item.CommandState = CommandState.Popped;
         OnPopped?.Invoke(this, Popped);
         this.Push(Item);
       }
       else {
         var Topped = Peek();
         if (Topped.CommandState == CommandState.Topped) {
-          Topped.CommandState = CommandState.Overed;
           Topped.OnOver();
+          Topped.CommandState = CommandState.Overed;
           OnOvered?.Invoke(this, Topped);
         }
-        Item.CommandState = CommandState.Topped;
-        Item.OnPush();
         base.Push(Item);
+        Item.OnPush();
+        Item.CommandState = CommandState.Topped;
         OnPushed?.Invoke(this, Item);
       }
     }
     public new T Pop() {
       if (Count > 0) {
-        Peek().OnPop();
         var Popped = base.Pop();
+        Popped.OnPop();
         Popped.CommandState = CommandState.Popped;
         OnPopped?.Invoke(this, Popped);
         if (Count > 0) {
-          Peek().CommandState = CommandState.Topped;
           Peek().OnTop();
+          Peek().CommandState = CommandState.Topped;
           OnTopped?.Invoke(this, Peek());
         }
         return Popped;
