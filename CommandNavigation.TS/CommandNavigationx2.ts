@@ -1,5 +1,5 @@
 
-import { Event2 } from "./node_modules/katkits/Event";
+import { Event2 } from "./../KatKits/KatKits.TS/Event";
 import {ICommandCtrl} from "./interfaces"
 
 export default class CommandNavigation extends Array<ICommandCtrl> {

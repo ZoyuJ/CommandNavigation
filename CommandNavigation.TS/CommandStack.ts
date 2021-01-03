@@ -1,5 +1,5 @@
 
-import { Event2 } from "./node_modules/katkits/Event";
+import { Func2, Event2 } from "./../KatKits/KatKits.TS/Event";
 
 export default class CommandStack<T> extends Array<T>{
   public readonly OnPushed: Event2<CommandStack<T>, T> = new Event2<CommandStack<T>, T>();
