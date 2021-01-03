@@ -3,13 +3,13 @@
   "version": "0.0.0",
   "license": "MIT",
   "description": "CommandNavigation.TS",
-  "main": "app.js",
-  "types": "app.d.ts",
+  "main": "main.js",
+  "types": "main.d.ts",
   "author": {
     "name": "ZoyuJ"
   },
   "scripts": {
-    "build": "tsc --build",
+    "build": "tsc --outFile ./bin/lib/CommandNavigation.js",
     "clean": "tsc --build --clean"
   },
   "devDependencies": {
