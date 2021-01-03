@@ -13,8 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandNavigation.WPF", "Co
 EndProject
 Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "CommandNavigation.TS", "CommandNavigation.TS\CommandNavigation.TS.njsproj", "{6C6DE670-EFDA-4B56-8A0C-C3A32BCAFCE8}"
 EndProject
-Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "KatKits.TS", "KatKits\KatKits.TS\KatKits.TS.njsproj", "{4FD105CB-1DD1-4A1D-B798-606CB20D3020}"
-EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		CommandNavigationCommon\CommandNavigationCommon.projitems*{3250f0fa-f082-4cc3-b01d-45d70d71f24c}*SharedItemsImports = 5
@@ -41,10 +39,6 @@ Global
 		{6C6DE670-EFDA-4B56-8A0C-C3A32BCAFCE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C6DE670-EFDA-4B56-8A0C-C3A32BCAFCE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C6DE670-EFDA-4B56-8A0C-C3A32BCAFCE8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4FD105CB-1DD1-4A1D-B798-606CB20D3020}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4FD105CB-1DD1-4A1D-B798-606CB20D3020}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4FD105CB-1DD1-4A1D-B798-606CB20D3020}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4FD105CB-1DD1-4A1D-B798-606CB20D3020}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
