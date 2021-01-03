@@ -4,3 +4,4 @@
 /// <reference path="Interfaces.ts" />
 
 declare namespace CommandNavigation { }
+

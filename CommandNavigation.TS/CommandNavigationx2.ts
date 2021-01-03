@@ -4,7 +4,7 @@
 /// <reference path="../KatKits/KatKits.TS/Event.ts"/>
 
 namespace CommandNavigation {
-  namespace CommandNavigationx2 {
+  export namespace CommandNavigationx2 {
     export class CommandNavigation extends Array<ICommandCtrl> {
       public readonly OnPopped: KatKits.Event2<CommandNavigation, ICommandCtrl> = new KatKits.Event2<CommandNavigation, ICommandCtrl>();
       public readonly OnPushed: KatKits.Event2<CommandNavigation, ICommandCtrl> = new KatKits.Event2<CommandNavigation, ICommandCtrl>();
