@@ -35,6 +35,9 @@
     <Content Include="tsconfig.json" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="CommandStack.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="main.ts" />
     <TypeScriptCompile Include="CommandNavigationx2.ts">
       <SubType>Code</SubType>
