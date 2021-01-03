@@ -17,8 +17,8 @@
          this.OnPushed = [];
          this.OnPopped = [];
        }
-       public CurrentOrder(): number { return super.length === 0 ? Number.MIN_SAFE_INTEGER : this.Peek().Order; }
-       public NextOrder(): number { return super.length === 0 ? 0 : this.Peek().Order + 10; }
+       public CurrentOrder(): number { return this.length === 0 ? Number.MIN_SAFE_INTEGER : this.Peek().Order; }
+       public NextOrder(): number { return this.length === 0 ? 0 : this.Peek().Order + 10; }
 
        public Peek(): ICommandCtrl { return this[this.length - 1]; }
 
@@ -40,7 +40,7 @@
        }
 
        public Pop(): ICommandCtrl {
-         if (super.length > 0) {
+         if (this.length > 0) {
            this.Peek().OnPop();
            const Popped = super.pop();
            if (this.OnPopped !== null && this.OnPopped.length > 0) this.OnPopped.forEach(E => E(this, Popped));
@@ -50,11 +50,11 @@
        }
 
        public Clear() {
-         while (super.length > 0) {
+         while (this.length > 0) {
            this.Pop();
          }
        }
-       public Discard() { super.splice(0, super.length); }
+       public Discard() { super.splice(0, this.length); }
      }
    }
 

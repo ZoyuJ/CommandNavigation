@@ -24,13 +24,13 @@ namespace CommandNavigation {
         this.OnOvered = [];
       }
 
-      public CurrentOrder(): number { return super.length === 0 ? Number.MAX_SAFE_INTEGER : this.Peek().Order; }
-      public NextOrder(): number { return super.length === 0 ? 0 : this.Peek().Order + 10; }
+      public CurrentOrder(): number { return this.length === 0 ? Number.MAX_SAFE_INTEGER : this.Peek().Order; }
+      public NextOrder(): number { return this.length === 0 ? 0 : this.Peek().Order + 10; }
 
       public Peek(): ICommandCtrlx4 { return this[this.length - 1]; }
 
       public Push(Item: ICommandCtrlx4) {
-        if (super.length === 0) {
+        if (this.length === 0) {
           Item.CommandState = CommandState.Topped;
           Item.OnPush();
           super.push(Item);
@@ -57,12 +57,12 @@ namespace CommandNavigation {
         }
       }
       public Pop(): ICommandCtrlx4 {
-        if (super.length > 0) {
+        if (this.length > 0) {
           this.Peek().OnPop();
           const Popped = super.pop();
           Popped.CommandState = CommandState.Popped;
           if (this.OnPopped !== null && this.OnPopped.length > 0) this.OnPopped.forEach(E => E(this, Popped));
-          if (super.length > 0) {
+          if (this.length > 0) {
             const Overed = this.Peek();
             Overed.CommandState = CommandState.Topped;
             Overed.OnTop();
@@ -74,14 +74,14 @@ namespace CommandNavigation {
       }
 
       public Clear() {
-        while (super.length > 0) {
+        while (this.length > 0) {
           const Popped = super.pop();
           Popped.CommandState = CommandState.Popped;
           Popped.OnPop();
           if (this.OnPopped !== null && this.OnPopped.length > 0) this.OnPopped.forEach(E => E(this, Popped));
         }
       }
-      public Discard() { super.splice(0, super.length); }
+      public Discard() { super.splice(0, this.length); }
     }
   }
  
