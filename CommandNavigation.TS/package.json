@@ -9,7 +9,7 @@
     "name": "ZoyuJ"
   },
   "scripts": {
-    "build": "tsc --outFile ./bin/lib/CommandNavigation.js",
+    "build": "tsc --build",
     "clean": "tsc --build --clean"
   },
   "devDependencies": {

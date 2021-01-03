@@ -5,10 +5,9 @@
     "removeComments": true,
     "sourceMap": true,
     "lib": ["es5"],
-    "module": "None",
+    "module": "UMD",
     "target": "ES5",
-    "outDir": "./bin/lib",
-    "outFile": "./bin/lib/CommandNavigation.js"
+    "outDir": "./bin"
   },
   "exclude": [
     "node_modules",

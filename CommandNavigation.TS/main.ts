@@ -1,7 +1,6 @@
-/// <reference path="Interfaces.ts" />
-/// <reference path="CommandNavigationx2.ts" />
-/// <reference path="CommandNavigationx4.ts" />
-/// <reference path="Interfaces.ts" />
 
-declare namespace CommandNavigation { }
+export * from "./CommandStack";
+export * from "./Interfaces";
+export * from "./CommandNavigationx2";
+export * from "./CommandNavigationx4"
 
