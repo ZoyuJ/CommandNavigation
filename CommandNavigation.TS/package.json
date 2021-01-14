@@ -1,12 +1,13 @@
 {
   "name": "commandnavigation.ts",
-  "version": "2.1.0",
+  "version": "2.0.0",
   "description": "",
-  "main": "Index.js",
+  "main": "./lib/Index.js",
+  "types": "./lib/Index.d.ts",
   "scripts": {
     "build": "tsc"
   },
-  "keywords": ["PersonalUse"],
+  "keywords": [ "PersonalUse" ],
   "author": "ZoyuJ",
   "license": "MIT",
   "devDependencies": {
