@@ -1,13 +1,20 @@
 {
   "compilerOptions": {
-    "declaration": true,
-    "emitDeclarationOnly": true,
+    "noImplicitAny": false,
     "module": "commonjs",
-    "target": "es6",
-    "lib": [ "es6" ],
-    "sourceMap": true
+    "noEmitOnError": true,
+    "removeComments": false,
+    "sourceMap": true,
+    "target": "es5",
+    "declaration": true,
+    "outDir": "./lib",
+    "lib": [ "ES2015" ]
   },
+  "include": [
+    "src"
+  ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "lib"
   ]
 }

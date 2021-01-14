@@ -3,21 +3,21 @@
   using System.Collections.Generic;
   using System.Linq;
 
-  public class CommandChain<T> : LinkedList<T> where T : class, ICommandCtrlx4 {
+  public class CommandCollection<T> : LinkedList<T> where T : class, ICommandCtrlx4 {
     public int Order { get; internal set; } = 0;
     public CommandState CommandState { get; protected set; } = CommandState.Popped;
     public CommandNavigation<T> Navigation { get; protected set; }
-    protected CommandChain() : base() { }
+    protected CommandCollection() : base() { }
 
-    public CommandChain(CommandNavigation<T> Navigation, IEnumerable<T> Items) : base(Items) {
+    public CommandCollection(CommandNavigation<T> Navigation, IEnumerable<T> Items) : base(Items) {
       this.Navigation = Navigation;
       Order = Items.First().Order;
     }
 
-    public CommandChain(CommandNavigation<T> Navigation) : base() {
+    public CommandCollection(CommandNavigation<T> Navigation) : base() {
       this.Navigation = Navigation;
     }
-    public CommandChain(CommandNavigation<T> Navigation, in int Order) : this(Navigation) {
+    public CommandCollection(CommandNavigation<T> Navigation, in int Order) : this(Navigation) {
       this.Order = Order;
     }
 
@@ -84,7 +84,7 @@
       base.Clear();
     }
 
-    public CommandChain<T> OnPop() {
+    public CommandCollection<T> OnPop() {
       if (CommandState != CommandState.Popped) {
         CommandState = CommandState.Popped;
         if (Count > 0) {
@@ -98,7 +98,7 @@
       }
       return this;
     }
-    public CommandChain<T> OnTop() {
+    public CommandCollection<T> OnTop() {
       if (CommandState != CommandState.Topped) {
         CommandState = CommandState.Topped;
         if (Count > 0) {
@@ -111,7 +111,7 @@
       }
       return this;
     }
-    public CommandChain<T> OnPush(CommandNavigation<T> Navigation = null) {
+    public CommandCollection<T> OnPush(CommandNavigation<T> Navigation = null) {
       if (CommandState != CommandState.Topped) {
         if (Navigation != null) this.Navigation = Navigation;
         CommandState = CommandState.Topped;
@@ -125,7 +125,7 @@
       }
       return this;
     }
-    public CommandChain<T> OnOver() {
+    public CommandCollection<T> OnOver() {
       if (CommandState != CommandState.Overed) {
         CommandState = CommandState.Overed;
         if (Count > 0) {

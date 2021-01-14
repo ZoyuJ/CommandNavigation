@@ -1,20 +1,18 @@
 {
-  "name": "command-navigation",
-  "version": "0.0.0",
-  "license": "MIT",
-  "description": "CommandNavigation.TS",
-  "main": "app.js",
-  "types": "app.d.ts",
-  "author": {
-    "name": "ZoyuJ"
-  },
+  "name": "commandnavigation.ts",
+  "version": "2.1.0",
+  "description": "",
+  "main": "Index.js",
   "scripts": {
-    "build": "tsc --build",
-    "clean": "tsc --build --clean"
+    "build": "tsc"
   },
+  "keywords": ["PersonalUse"],
+  "author": "ZoyuJ",
+  "license": "MIT",
   "devDependencies": {
-    "@types/node": "^8.0.14",
-    "typescript": "^3.9.7"
+    "typescript": "^4.1.3"
   },
-  "dependencies": {}
+  "dependencies": {
+    "katkits.ts": "*"
+  }
 }
