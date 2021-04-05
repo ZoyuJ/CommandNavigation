@@ -20,7 +20,6 @@
     <Content Include=".npmignore">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="package-lock.json" />
     <Content Include="package.json" />
     <Content Include="tsconfig.json">
       <SubType>Code</SubType>
@@ -36,7 +35,6 @@
     <TypeScriptCompile Include="src\CommandStack.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="src\Index.ts" />
     <TypeScriptCompile Include="src\CommandNavigationx2.ts" />
     <TypeScriptCompile Include="src\CommandNavigationx4.ts" />
     <TypeScriptCompile Include="src\Interfaces.ts" />
