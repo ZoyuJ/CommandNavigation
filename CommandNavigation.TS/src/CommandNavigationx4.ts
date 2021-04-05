@@ -1,5 +1,5 @@
 import { ICommandCtrlx4, CommandState } from "./Interfaces";
-import { Event2 } from "./../node_modules/katkits.ts/lib/Event"
+import { Event2 } from "katkits/lib/Event"
 export default class CommandNavigation extends Array<ICommandCtrlx4> {
   public readonly OnPopped: Event2<CommandNavigation, ICommandCtrlx4>;
   public readonly OnPushed: Event2<CommandNavigation, ICommandCtrlx4>;

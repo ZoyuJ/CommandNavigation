@@ -45,7 +45,7 @@ export enum CommandState {
 }
 
 /*
- ManualCtrl ©Ð¡ú ManualCtrlx4 ©´
-            ©¸¡ú Ctrl         ©Ø¡ú Ctrlx4
+ ManualCtrl ï¿½Ð¡ï¿½ ManualCtrlx4 ï¿½ï¿½
+            ï¿½ï¿½ï¿½ï¿½ Ctrl         ï¿½Ø¡ï¿½ Ctrlx4
       
  */

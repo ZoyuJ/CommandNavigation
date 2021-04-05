@@ -1,5 +1,5 @@
 
-import { Func2, Action2 } from "./../node_modules/katkits.ts/lib/Event"
+import { Func2, Action2 } from "katkits/lib/Event"
 
 export default class CommandStack<T> extends Array<T>{
 
